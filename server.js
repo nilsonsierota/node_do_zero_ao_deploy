@@ -1,7 +1,7 @@
 import { fastify } from 'fastify'
 // import { DatabaseMemory } from './database-memory.js';
 import { DatabasePostgres } from './database-postgres.js';
-import { request } from 'node:http'
+import { request } from 'node:http';
 
 const server = fastify()
 
@@ -41,7 +41,7 @@ server.put('/videos/:id', async (request, reply) => {
   return reply.status(204).send()
 })
 
-server.delete('/videos/:id', async () => {
+server.delete('/videos/:id', async (request, reply) => {
   const videoId = request.params.id
 
   await database.delete(videoId)
